@@ -31,7 +31,7 @@ FIRST_PATTERN = re.compile("(.*):(.*):(.*):(.*):(.*):(.*)/\\?")
 # obfsparam={base64(混淆参数(网址))}&protoparam={base64(混淆协议)}
 # &remarks={base64(节点名称)}&group={base64(分组名)})
 SECOND_PATTERN = re.compile(".*obfsparam=(.*)&protoparam=(.*)&remarks=(.*)&group=(.*)")
-
+#your_url
 HTTP_PATTERN = re.compile(
         r'^(?:http|ftp)s?://' # http:// or https://
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
@@ -41,9 +41,9 @@ HTTP_PATTERN = re.compile(
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
 _CONFIG = {}
-_CONFIG['subscribe_url'] = 'your_url'
-_CONFIG['servers_path'] = '/usr/local/etc/ssr_AXF_servers.json'
-_CONFIG['ssr_config_path'] = '/usr/local/etc/ssr_AXF_config.json'
+_CONFIG['subscribe_url'] = ''
+_CONFIG['servers_path'] = 'ssr_AXF_servers.json'
+_CONFIG['ssr_config_path'] = 'ssr_AXF_config.json'
 _CONFIG['daemon'] = ''
 _CONFIG['pid-file'] = _CONFIG.get('pid-file', "/usr/local/var/run/ssr_AXF.pid")
 _CONFIG['log-file'] = _CONFIG.get('log-file', "/usr/local/var/log/ssr_AXF.log")
