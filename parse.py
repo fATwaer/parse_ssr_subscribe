@@ -159,8 +159,9 @@ def display_all_server_nodes(conf):
             data = json.load(fp)
     except ValueError as e:
         print("open json file failed" + e);
-    for s in data:
-        print(s['remarks'])
+    for idx, s in enumerate(data):
+        print("%2d: %s (%s:%s)"%(idx, s['remarks'], s['server'], s['server_port']))
+    return len(data)
 
 def gen_json_config_by_server_name(conf):
     name = conf['server_name']
@@ -171,33 +172,33 @@ def gen_json_config_by_server_name(conf):
         return False
     with open(s_path, "r") as fp:
         data = json.load(fp)
+    s_conf = ''
     for s in data:
         if (s['remarks'] == name):
             local_json = {}
-            local_json['node_name'] = s['group'] + " -> " + s['remarks']
-            local_json['server'] = s['server']
-            local_json['local_address'] = conf['local_address']
-            local_json['local_port'] = conf['local_port']
-            local_json['timeout'] = conf['timeout']
-            local_json['workers'] = conf['workers']
-            local_json['server_port'] = int(s['server_port'])
-            local_json['protocol'] = s['protocol']
-            local_json['method'] = s['method']
-            local_json['obfs'] = s['obfs']
-            local_json['password'] = s['password']
-            local_json['obfs_param'] = s['obfs_param']
-            local_json['protocol_param'] = s['protocol_param']
+            for key in s:
+                local_json[key] = s[key]
+            #local_json['node_name'] = s['group'] + " -> " + s['remarks']
+            #local_json['server'] = s['server']
+            #local_json['local_address'] = conf['local_address']
+            #local_json['local_port'] = conf['local_port']
+            #local_json['timeout'] = conf['timeout']
+            #local_json['workers'] = conf['workers']
+            #local_json['server_port'] = int(s['server_port'])
+            #local_json['protocol'] = s['protocol']
+            #local_json['method'] = s['method']
+            #local_json['obfs'] = s['obfs']
+            #local_json['password'] = s['password']
+            #local_json['obfs_param'] = s['obfs_param']
+            #local_json['protocol_param'] = s['protocol_param']
             s_conf = json.dumps(local_json, sort_keys = False, indent = 4, ensure_ascii = False)
-            print(s_conf)
-            # try:
-            #     with open(dest, "w") as f:
-            #         f.write(s_conf)
-            #         print('write ' + name + " to " + dest)
-            # except ValueError as e:
-            #     print("get server name failed. " + e)
-            #     return False
-            return True
-    return False
+            try:
+                with open(dest, "w") as f:
+                    f.write(s_conf)
+                    print('write ' + name + " to " + dest)
+            except ValueError as e:
+                print(e)
+    return s_conf
 
 # you should change by your purchased serve.
 def display_server_status_regen_config(conf):
