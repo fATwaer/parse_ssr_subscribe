@@ -5,4 +5,4 @@ fork from [Rubbi5hThird/parse_ssr_subscribe](https://github.com/Rubbi5hThird/par
 
 
 ## Usage
-![Usage](usage.gif)
+![Usage](https://github.com/fATwaer/ssr_selector/blob/master/usage.gif)
