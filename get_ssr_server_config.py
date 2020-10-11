@@ -8,8 +8,9 @@ from yaml import load, dump
 from yaml import Loader, Dumper
 import parse
 import os
+import time
 
-DEBUG=True
+DEBUG=False
 
 def loop():
     term = Terminal()
@@ -19,11 +20,14 @@ def loop():
     if data != None:
         parse.save_servers_to_json(data, parse._CONFIG['servers_path'])
     begin_postion = term.get_location()
+    # print(begin_postion)
+    # time.sleep(1000)
+    # print(data)
     for idx, s in enumerate(data):
         print("%2d: %s (%s:%s)"%(idx, s['remarks'], s['server'], s['server_port']))
-    #print(f"{term.home}")
-    print(term.yellow+"press 'q' to quit. press 'Enter' to select server config."+term.normal)
 
+    print(term.yellow+"press 'q' to quit. press 'Enter' to select server config."+term.normal)
+    
     cur = 0
     print(term.move_xy(0, begin_postion[0]+cur), end='')
     print(term.orangered+"%2d: %s (%s:%s)"%(cur, data[cur]['remarks'], data[cur]['server'], data[cur]['server_port'])+term.normal, flush=True, end='')
@@ -110,7 +114,7 @@ def list_info(yaml):
 def main():
     yaml = parse_yaml()
     if yaml is None:
-        print('It seems that this is first use...');
+        print('It seems that this is first use...')
         yaml = get_new_yaml()
     list_info(yaml)
 

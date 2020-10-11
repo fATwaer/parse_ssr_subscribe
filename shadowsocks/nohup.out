@@ -1,0 +1,5 @@
+INFO: loading config from /root/ss/ssr_selector/config.json
+2020-08-30 14:42:35 INFO     loading libcrypto from libcrypto.so.10
+2020-08-30 14:42:35 INFO     starting local at 127.0.0.1:1080
+2020-08-30 14:43:09 INFO     connecting 3.221.81.55:80 from 127.0.0.1:34636
+2020-08-30 14:43:41 INFO     connecting 35.170.21.246:80 from 127.0.0.1:34768
